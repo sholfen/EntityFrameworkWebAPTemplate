@@ -6,16 +6,19 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using EntityFrameworkWebAPTemplate.Models;
+using EntityFrameworkWebAPTemplate.Services.Interfaces;
 
 namespace EntityFrameworkWebAPTemplate.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ICustomersService _customersService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ICustomersService customersService)
         {
             _logger = logger;
+            _customersService = customersService;
         }
 
         public IActionResult Index()
@@ -32,6 +35,13 @@ namespace EntityFrameworkWebAPTemplate.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        [HttpGet]
+        public IActionResult TestCustomers()
+        {
+            var result = _customersService.GetAll();
+            return new JsonResult(result);
         }
     }
 }

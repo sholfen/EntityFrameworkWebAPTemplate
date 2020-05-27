@@ -20,5 +20,11 @@ namespace EntityFrameworkWebAPTemplate.Services.Implements
         {
             _customersRepository.Insert(customers);
         }
+
+        public List<Customers> GetAll()
+        {
+            var query = _customersRepository.Query();
+            return query.ToList();
+        }
     }
 }

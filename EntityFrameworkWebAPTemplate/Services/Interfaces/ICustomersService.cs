@@ -9,5 +9,6 @@ namespace EntityFrameworkWebAPTemplate.Services.Interfaces
     public interface ICustomersService
     {
         void AddCustomer(Customers customers);
+        List<Customers> GetAll();
     }
 }

@@ -37,10 +37,11 @@ namespace EntityFrameworkWebAPTemplate
             });
             _ = services.AddScoped<DbContext, NorthwindContext>();
             services.AddScoped<IEmployeesRepository, EmployeesRepository>();
+            services.AddScoped<ICustomersRepository, CustomersRepository>();
 
             //services setup
             services.AddScoped<IEmployeesService, EmployeesService>();
-
+            services.AddScoped<ICustomersService, CustomersService>();
 
             services.AddControllersWithViews();
         }
