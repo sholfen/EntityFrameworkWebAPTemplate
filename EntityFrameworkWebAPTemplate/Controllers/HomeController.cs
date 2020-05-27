@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using EntityFrameworkWebAPTemplate.Models;
 using EntityFrameworkWebAPTemplate.Services.Interfaces;
+using EntityFrameworkWebAPTemplate.Models.DBModels;
 
 namespace EntityFrameworkWebAPTemplate.Controllers
 {
@@ -42,6 +43,12 @@ namespace EntityFrameworkWebAPTemplate.Controllers
         {
             var result = _customersService.GetAll();
             return new JsonResult(result);
+        }
+
+        public IActionResult TestCustomer()
+        {
+            Customers customer = _customersService.GetCustomerByID("ANATR");
+            return new JsonResult(customer);
         }
     }
 }

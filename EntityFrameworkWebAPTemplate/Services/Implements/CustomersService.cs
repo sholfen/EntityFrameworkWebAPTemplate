@@ -26,5 +26,11 @@ namespace EntityFrameworkWebAPTemplate.Services.Implements
             var query = _customersRepository.Query();
             return query.ToList();
         }
+
+        public Customers GetCustomerByID(string customerID)
+        {
+            Customers customer = _customersRepository.QueryBy(c => c.CustomerId == customerID).FirstOrDefault();
+            return customer;
+        }
     }
 }

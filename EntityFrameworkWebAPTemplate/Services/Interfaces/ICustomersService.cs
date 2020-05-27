@@ -10,5 +10,6 @@ namespace EntityFrameworkWebAPTemplate.Services.Interfaces
     {
         void AddCustomer(Customers customers);
         List<Customers> GetAll();
+        Customers GetCustomerByID(string customerID);
     }
 }
