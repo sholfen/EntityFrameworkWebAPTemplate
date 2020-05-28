@@ -51,5 +51,11 @@ namespace EntityFrameworkWebAPTemplate.Controllers
             Customers customer = _customersService.GetCustomerByID("ANATR");
             return new JsonResult(customer);
         }
+
+        public IActionResult TestDynamic()
+        {
+            var customers = _customersService.GetAll("CompanyName, CustomerID");
+            return new JsonResult(customers);
+        }
     }
 }

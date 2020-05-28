@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using EntityFrameworkWebAPTemplate.DBTools.Tools;
 using System.Linq.Expressions;
+using System.Linq.Dynamic;
+using System.Linq.Dynamic.Core;
 
 namespace EntityFrameworkWebAPTemplate.DBTools.Repository
 {
@@ -39,9 +41,18 @@ namespace EntityFrameworkWebAPTemplate.DBTools.Repository
             _currentDbContext.SaveChanges();
         }
 
-        public IQueryable<T> Query(string col = "*")
+        public IQueryable<T> Query()
         {
             return _currentDbContext.Set<T>().AsNoTracking();
+        }
+
+        public IQueryable<T> Query(string col = "*")
+        {
+            if (col == "*")
+            {
+                return _currentDbContext.Set<T>().AsNoTracking();
+            }
+            return _currentDbContext.Set<T>().AsNoTracking().Select<T>($"new {{ {col} }}");//"new { City, CompanyName }"
         }
 
         public IQueryable<T> QueryBy(Expression<Func<T, bool>> condition)
