@@ -41,11 +41,6 @@ namespace EntityFrameworkWebAPTemplate.DBTools.Repository
             _currentDbContext.SaveChanges();
         }
 
-        public IQueryable<T> Query()
-        {
-            return _currentDbContext.Set<T>().AsNoTracking();
-        }
-
         public IQueryable<T> Query(string col = "*")
         {
             if (col == "*")

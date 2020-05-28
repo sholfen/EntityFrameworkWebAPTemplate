@@ -11,7 +11,6 @@ namespace EntityFrameworkWebAPTemplate.DBTools.Repository
         void Insert(T parameter);
         void Update(T parameter);
         IQueryable<T> Query(string col = "*");
-        IQueryable<T> Query();
         IQueryable<T> QueryBy(Expression<Func<T, bool>> condition);
     }
 }
