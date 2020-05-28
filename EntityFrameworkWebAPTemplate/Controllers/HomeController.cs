@@ -45,6 +45,7 @@ namespace EntityFrameworkWebAPTemplate.Controllers
             return new JsonResult(result);
         }
 
+        [HttpGet]
         public IActionResult TestCustomer()
         {
             Customers customer = _customersService.GetCustomerByID("ANATR");
