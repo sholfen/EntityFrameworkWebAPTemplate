@@ -15,7 +15,8 @@ namespace EntityFrameworkWebAPTemplate.DBTools.Tools
 
         public enum DBName
         {
-            Northwind
+            Northwind,
+            main
         }
     }
 }

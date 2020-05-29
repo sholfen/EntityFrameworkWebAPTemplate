@@ -10,6 +10,9 @@ EntityFramework Core example for ASP.NET Core
 從資料庫建 DB Model 的指令(以北風資料庫為範例)：
 `dotnet ef dbcontext scaffold "Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Northwind;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False" Microsoft.EntityFrameworkCore.SqlServer --output-dir Models/DBModels`
 
+SQLite 指令：
+`dotnet ef dbcontext scaffold "Data Source=.\DataFile\sample.sqlite;Cache=Shared" Microsoft.EntityFrameworkCore.Sqlite --output-dir Models/DBModels/SQLiteModels`
+
 一開始先在 Startup.cs 設定 DbContext：
 ~~~csharp
 public void ConfigureServices(IServiceCollection services)

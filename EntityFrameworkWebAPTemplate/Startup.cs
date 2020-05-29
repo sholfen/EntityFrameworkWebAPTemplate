@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using EntityFrameworkWebAPTemplate.DBTools.Repository.Implements;
 using EntityFrameworkWebAPTemplate.DBTools.Repository.Interfaces;
 using EntityFrameworkWebAPTemplate.Models.DBModels;
+using EntityFrameworkWebAPTemplate.Models.DBModels.SQLiteModels;
 using EntityFrameworkWebAPTemplate.Services.Implements;
 using EntityFrameworkWebAPTemplate.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
@@ -39,9 +40,18 @@ namespace EntityFrameworkWebAPTemplate
             services.AddScoped<IEmployeesRepository, EmployeesRepository>();
             services.AddScoped<ICustomersRepository, CustomersRepository>();
 
+            services.AddEntityFrameworkSqlite();
+            services.AddDbContext<SQLiteContext>(options =>
+            {
+                options.UseSqlite(Configuration.GetConnectionString("SQLiteConnction"));
+            });
+            _ = services.AddScoped<DbContext, SQLiteContext>();
+            services.AddScoped<IAlbumRepository, AlbumRepository>();
+
             //services setup
             services.AddScoped<IEmployeesService, EmployeesService>();
             services.AddScoped<ICustomersService, CustomersService>();
+            services.AddScoped<IAlbumService, AlbumService>();
 
             services.AddControllersWithViews();
         }

@@ -15,11 +15,13 @@ namespace EntityFrameworkWebAPTemplate.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ICustomersService _customersService;
+        private readonly IAlbumService _albumService;
 
-        public HomeController(ILogger<HomeController> logger, ICustomersService customersService)
+        public HomeController(ILogger<HomeController> logger, ICustomersService customersService, IAlbumService albumService)
         {
             _logger = logger;
             _customersService = customersService;
+            _albumService = albumService;
         }
 
         public IActionResult Index()
@@ -56,6 +58,12 @@ namespace EntityFrameworkWebAPTemplate.Controllers
         {
             var customers = _customersService.GetAll("CompanyName, CustomerID");
             return new JsonResult(customers);
+        }
+
+        public IActionResult TestSQLite()
+        {
+            var albums = _albumService.GetAll();
+            return new JsonResult(albums);
         }
     }
 }
