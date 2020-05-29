@@ -30,7 +30,6 @@ namespace EntityFrameworkWebAPTemplate.Services.Implements
         public List<Customers> GetAll(string col = "*")
         {
             var query = _customersRepository.Query(col);
-
             return query.ToList();
         }
 

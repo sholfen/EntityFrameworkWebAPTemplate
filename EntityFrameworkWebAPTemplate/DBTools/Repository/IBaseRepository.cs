@@ -12,5 +12,7 @@ namespace EntityFrameworkWebAPTemplate.DBTools.Repository
         void Update(T parameter);
         IQueryable<T> Query(string col = "*");
         IQueryable<T> QueryBy(Expression<Func<T, bool>> condition);
+        IQueryable<T> Query(List<Expression<Func<T, bool>>> conditionList);
+        void ExecuteRawSQL(string sql);
     }
 }

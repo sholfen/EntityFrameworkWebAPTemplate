@@ -50,9 +50,25 @@ namespace EntityFrameworkWebAPTemplate.DBTools.Repository
             return _currentDbContext.Set<T>().AsNoTracking().Select<T>($"new {{ {col} }}");//"new { City, CompanyName }"
         }
 
+        public IQueryable<T> Query(List<Expression<Func<T, bool>>> conditionList)
+        {
+            IQueryable<T> query = _currentDbContext.Set<T>().AsNoTracking().Where(conditionList[0]);
+            foreach (var condition in conditionList.Skip(1))
+            {
+                query = query.Where(condition);
+            }
+
+            return query;
+        }
+
         public IQueryable<T> QueryBy(Expression<Func<T, bool>> condition)
         {
             return _currentDbContext.Set<T>().Where(condition).AsNoTracking();
+        }
+
+        public void ExecuteRawSQL(string sql)
+        {
+            _ = _currentDbContext.Database.ExecuteSqlRaw(sql);
         }
     }
 }
