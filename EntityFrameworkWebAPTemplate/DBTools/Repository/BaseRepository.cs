@@ -10,14 +10,14 @@ using System.Linq.Dynamic.Core;
 
 namespace EntityFrameworkWebAPTemplate.DBTools.Repository
 {
-    public class BaseRepository<T> where T:class
+    public class BaseRepository<T> where T : class
     {
         private IEnumerable<DbContext> _dbContexts;
         protected Dictionary<string, DbContext> _dbContextsDic;
         protected string _currentDBName;
         protected DbContext _currentDbContext;
 
-        public BaseRepository(IEnumerable<DbContext> dbContexts,string dbName)
+        public BaseRepository(IEnumerable<DbContext> dbContexts, string dbName)
         {
             _currentDBName = dbName;
             _dbContexts = dbContexts;

@@ -1,8 +1,9 @@
 ﻿using System;
+using EntityFrameworkWebAPTemplate.Models.DBModels.SQLiteModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace EntityFrameworkWebAPTemplate.Models.DBModels.SQLiteModels
+namespace EntityFrameworkWebAPTemplate.Models.DBModels.DbContexts
 {
     public partial class SQLiteContext : DbContext
     {
