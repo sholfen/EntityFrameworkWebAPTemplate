@@ -14,5 +14,6 @@ namespace EntityFrameworkWebAPTemplate.DBTools.Repository
         IQueryable<T> QueryBy(Expression<Func<T, bool>> condition);
         IQueryable<T> Query(List<Expression<Func<T, bool>>> conditionList);
         void ExecuteRawSQL(string sql);
+        IQueryable<T> ExecStoreProcedure(string storeProcedureRawSql, object[] parameters);
     }
 }

@@ -7,6 +7,7 @@ using EntityFrameworkWebAPTemplate.DBTools.Tools;
 using System.Linq.Expressions;
 using System.Linq.Dynamic;
 using System.Linq.Dynamic.Core;
+using System.Dynamic;
 
 namespace EntityFrameworkWebAPTemplate.DBTools.Repository
 {
@@ -69,6 +70,51 @@ namespace EntityFrameworkWebAPTemplate.DBTools.Repository
         public void ExecuteRawSQL(string sql)
         {
             _ = _currentDbContext.Database.ExecuteSqlRaw(sql);
+        }
+
+        public IQueryable<T> ExecStoreProcedure(string storeProcedureRawSql, object[] parameters)
+        {
+            IQueryable<T> result = null;
+            if (parameters == null)
+            {
+                result = _currentDbContext.Set<T>().FromSqlRaw(storeProcedureRawSql);
+            }
+            else
+            {
+                result = _currentDbContext.Set<T>().FromSqlRaw(storeProcedureRawSql, parameters);
+            }
+            //exec [dbo].[CustOrderHist] @CustomerID = N'BOTTM'
+            //SP Example:
+            //USE[Northwind]
+            //GO
+            ///****** Object:  StoredProcedure [dbo].[MyTest]    Script Date: 2020/6/3 上午 09:28:31 ******/
+            //SET ANSI_NULLS ON
+            //GO
+            //SET QUOTED_IDENTIFIER ON
+            //GO
+            //-- =============================================
+            //--Author:		< Author,,Name >
+            //--Create date: < Create Date,,>
+            //--Description:	< Description,,>
+            //-- =============================================
+            //CREATE PROCEDURE[dbo].[MyTest]
+            //    -- Add the parameters for the stored procedure here
+
+            //    @Num int
+            //AS
+            //BEGIN
+            //    -- SET NOCOUNT ON added to prevent extra result sets from
+            //    -- interfering with SELECT statements.
+
+            //    SET NOCOUNT ON;
+
+            //--Insert statements for procedure here
+       
+            //SELECT TOP(@Num) * FROM[dbo].[Customers];
+            //END
+
+
+            return result;
         }
     }
 }

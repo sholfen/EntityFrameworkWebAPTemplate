@@ -38,5 +38,15 @@ namespace EntityFrameworkWebAPTemplate.Services.Implements
             Customers customer = _customersRepository.QueryBy(c => c.CustomerId == customerID).FirstOrDefault();
             return customer;
         }
+
+        public List<Customers> GetCustomersBySP()
+        {
+            //exec [dbo].[CustOrderHist] @CustomerID = N'BOTTM'
+            //dbContext.Set().FromSql("dbo.SomeSproc @Id = {0}, @Name = {1}", 45, "Ada");
+            List<Customers> customers = null;
+            customers = _customersRepository.ExecStoreProcedure("exec [dbo].[MyTest] @Num = {0};", new object[] { 5 }).ToList();
+
+            return customers;
+        }
     }
 }

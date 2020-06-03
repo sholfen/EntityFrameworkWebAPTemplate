@@ -54,16 +54,25 @@ namespace EntityFrameworkWebAPTemplate.Controllers
             return new JsonResult(customer);
         }
 
+        [HttpGet]
         public IActionResult TestDynamic()
         {
             var customers = _customersService.GetAll("CompanyName, CustomerID");
             return new JsonResult(customers);
         }
 
+        [HttpGet]
         public IActionResult TestSQLite()
         {
             var albums = _albumService.GetAll();
             return new JsonResult(albums);
+        }
+
+        [HttpGet]
+        public IActionResult TestP()
+        {
+            var list = _customersService.GetCustomersBySP();
+            return new JsonResult(list);
         }
     }
 }

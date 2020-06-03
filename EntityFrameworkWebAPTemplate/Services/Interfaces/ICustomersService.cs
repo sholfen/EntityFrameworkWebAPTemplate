@@ -12,5 +12,6 @@ namespace EntityFrameworkWebAPTemplate.Services.Interfaces
         List<Customers> GetAll();
         List<Customers> GetAll(string col = "*");
         Customers GetCustomerByID(string customerID);
+        List<Customers> GetCustomersBySP();
     }
 }
